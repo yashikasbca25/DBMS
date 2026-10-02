@@ -1,0 +1,126 @@
+LAB-4
+
+CREATE DATABASE IF NOT EXISTS dbmslab;
+USE dbmslab;
+DROP TABLE IF EXISTS STUDENT;
+CREATE TABLE STUDENT (
+    ID INT,
+    NAME VARCHAR(30),
+    MARKS INT,
+    DOB DATE
+);
+INSERT INTO STUDENT VALUES
+(1, 'Rahul', 85, '2005-05-10'),
+(2, 'Ananya', 92, '2004-08-15'),
+(3, 'Rohan', 76, '2005-01-20');
+SELECT
+    ID,
+    NAME,
+    MARKS,
+    DOB,
+    CAST(MARKS AS CHAR) AS Marks_Text,
+    CONVERT(MARKS, CHAR) AS Convert_Text,
+    CAST(DOB AS CHAR) AS DOB_Text,
+    CURRENT_DATE AS Today_Date,
+    CURRENT_TIMESTAMP AS Current_Date_Time,
+    YEAR(DOB) AS Birth_Year,
+    MONTH(DOB) AS Birth_Month,
+    DAY(DOB) AS Birth_Day,
+    DATE_ADD(DOB, INTERVAL 1 YEAR) AS Date_After_1_Year,
+    DATEDIFF(CURRENT_DATE, DOB) AS Days_Difference
+FROM STUDENT;
+---------------------------------------------------------------------------------------------------
+LAB-5
+
+CREATE DATABASE IF NOT EXISTS dbmslab;
+USE dbmslab;
+DROP TABLE IF EXISTS STUDENT;
+CREATE TABLE STUDENT (
+    ID INT,
+    NAME VARCHAR(30),
+    MARKS INT,
+    DOB DATE
+);
+INSERT INTO STUDENT VALUES
+(1, 'Rahul', 85, '2005-05-10'),
+(2, 'Ananya', 92, '2004-08-15'),
+(3, 'Rohan', 76, '2005-01-20'),
+(4, 'Priya', 88, '2004-12-05'),
+(5, 'Karan', 65, '2005-07-25');
+SELECT
+    ID,
+    NAME,
+    MARKS,
+    MARKS + 5 AS Addition,
+    MARKS - 5 AS Subtraction,
+    MARKS * 2 AS Multiplication,
+    MARKS / 2 AS Division,
+    MOD(MARKS, 10) AS Remainder,
+    MARKS = 85 AS Equal_85,
+    MARKS <> 85 AS Not_Equal_85,
+    MARKS > 80 AS Greater_Than_80,
+    MARKS < 80 AS Less_Than_80,
+    MARKS >= 85 AS Greater_Equal_85,
+    MARKS <= 85 AS Less_Equal_85,
+    (MARKS > 80 AND MARKS < 95) AS AND_Example,
+    (MARKS > 90 OR MARKS < 80) AS OR_Example,
+    (NOT MARKS = 85) AS NOT_Example
+FROM STUDENT;
+---------------------------------------------------------------------------------------------------
+LAB 6
+SPECIAL OPERATORS:
+
+CREATE DATABASE IF NOT EXISTS dbmslab;
+USE dbmslab;
+DROP TABLE IF EXISTS STUDENT;
+CREATE TABLE STUDENT (
+    ID INT,
+    NAME VARCHAR(30),
+    MARKS INT,
+    DOB DATE
+);
+INSERT INTO STUDENT VALUES
+(1, 'Rahul', 85, '2005-05-10'),
+(2, 'Ananya', 92, '2004-08-15'),
+(3, 'Rohan', 76, '2005-01-20'),
+(4, 'Priya', 88, '2004-12-05'),
+(5, 'Karan', 65, '2005-07-25');
+SELECT
+    ID,
+    NAME,
+    MARKS,
+    MARKS BETWEEN 80 AND 90 AS Between_80_90,
+    MARKS IN (76, 85, 92) AS In_Example,
+    MARKS NOT IN (76, 85) AS Not_In_Example,
+    NAME LIKE 'R%' AS Like_Example,
+    DOB IS NULL AS Is_Null,
+    DOB IS NOT NULL AS Is_Not_Null
+FROM STUDENT;
+
+UNION OPERATORS: 
+
+USE dbmslab;
+DROP TABLE IF EXISTS STUDENT_A;
+DROP TABLE IF EXISTS STUDENT_B;
+CREATE TABLE STUDENT_A (
+    ID INT,
+    NAME VARCHAR(30)
+);
+CREATE TABLE STUDENT_B (
+    ID INT,
+    NAME VARCHAR(30)
+);
+INSERT INTO STUDENT_A VALUES
+(1, 'Rahul'),
+(2, 'Ananya'),
+(3, 'Rohan');
+INSERT INTO STUDENT_B VALUES
+(4, 'Priya'),
+(5, 'Karan'),
+(6, 'Sneha');
+SELECT ID, NAME
+FROM STUDENT_A
+UNION
+SELECT ID, NAME
+FROM STUDENT_B;
+---------------------------------------------------------------------------------------------------
